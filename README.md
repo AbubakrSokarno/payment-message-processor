@@ -13,7 +13,7 @@ This application processes payment messages in a custom format, decodes them, an
 
 ---
 
-## How to run (Spring Boot REST API) from IDE
+## How to run from IDE
 1. Open the project in your IDE (e.g. IntelliJ) 
 2. do clean install from the maven lifecycle panel 
 ![img_1.png](img_1.png)
@@ -21,22 +21,13 @@ This application processes payment messages in a custom format, decodes them, an
 ![img.png](img.png)
 
 
-## How to run (Spring Boot REST API) with mvn cmd
+## How to run with mvn cmd
 1. make sure that you have mvn installed and added to environmental variables in the "Path" 
 ![img_2.png](img_2.png)
 2. navigate to the unzipped/cloned project
 3. execute -> mvn clean install 
 ![img_3.png](img_3.png)
 4. execute -> mvn spring-boot:run
-
-
-## How to run it as TCP Server (on Windows)
-1. open powershell navigate to the project
-2. execute -> java -cp target/littlepay-1.0-SNAPSHOT.jar org.example.LittlePayServer (launching the TCP Server)
-3. in another powershell window, 
-    execute: powershell -ExecutionPolicy Bypass -File .\SendTcpMessage.ps1  -message "AF0CGJ8qAQKfAgIBAFoIQRERERERERFfKgIJeAMCJJ8qCAQAAAAAAAAAXyoCCCafAgMSNFZaCDeCgiRjEABfnwMBAAMCGJ8qAQKfAgMAUABaBzRWeJASNFZfKgIIQAM="
-4. then the results will appear in the TCP Server powershell window
-
 
 
 ## How to test (using curl)

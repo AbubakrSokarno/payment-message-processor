@@ -88,18 +88,22 @@
         <ul>
             <li>Break down long methods (e.g., <code>resolveTag</code>) into smaller, reusable methods.</li>
             <li>Add comments to explain complex logic or business rules.</li>
+            <li>Add OpenAPI for documenting the APIs</li>
+            <li>Add Lombok to reduce classes implementation by using annotations like @Getter @Setter ...etc</li>
         </ul>
 
         <h3>4. Testability</h3>
         <ul>
             <li>Apply <strong>Dependency Inversion Principle (DIP)</strong>: Use dependency injection to depend on abstractions.</li>
             <li>Write comprehensive unit tests, including edge cases and error scenarios.</li>
+            <li>Handle the code coverage using tools like sonarqube</li>
         </ul>
 
         <h3>5. Error Handling</h3>
         <ul>
             <li>Replace <code>e.printStackTrace()</code> with proper logging (e.g., SLF4J).</li>
             <li>Add custom exceptions for better error categorization.</li>
+            <li>Add ControllerAdvice catches exceptions thrown by controllers and returns meaningful HTTP responses</li>
         </ul>
 
         <h3>6. Performance</h3>

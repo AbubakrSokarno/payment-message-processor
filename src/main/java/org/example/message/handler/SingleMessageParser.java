@@ -1,9 +1,11 @@
 package org.example.message.handler;
 
 import org.example.entity.MessageEntity;
+import org.springframework.stereotype.Component;
 
 import static org.example.message.handler.MessageParserHelper.addTag;
 
+@Component
 public class SingleMessageParser {
 
     public MessageEntity parse(String message) {

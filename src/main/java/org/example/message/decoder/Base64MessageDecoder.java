@@ -1,9 +1,11 @@
 package org.example.message.decoder;
 
 import org.example.message.decoder.interfaces.Decoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
+@Service
 public class Base64MessageDecoder implements Decoder {
 
     public byte[] decode(String message) {

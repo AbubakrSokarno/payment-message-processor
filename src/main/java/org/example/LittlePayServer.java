@@ -1,13 +1,20 @@
 package org.example;
 
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+@Service
 public class LittlePayServer {
 
-    private final LittlePayClientHandler littlePayClientHandler = new LittlePayClientHandler();
+    private final LittlePayClientHandler littlePayClientHandler;
     private ServerSocket serverSocket;
+
+    public LittlePayServer(LittlePayClientHandler littlePayClientHandler) {
+        this.littlePayClientHandler = littlePayClientHandler;
+    }
 
     public void start(int port) {
         try {
@@ -34,10 +41,5 @@ public class LittlePayServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        LittlePayServer socketServer = new LittlePayServer();
-        socketServer.start(8888);
     }
 }

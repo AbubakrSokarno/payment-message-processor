@@ -1,7 +1,10 @@
 package org.example.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
+@Component
 public class MessageEntity {
 
     private String kernel;
