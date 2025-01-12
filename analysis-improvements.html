@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary of Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .improvements {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        .key-takeaways {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #2ecc71;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Summary of Analysis</h1>
+
+<div class="section">
+    <h2>Project Overview</h2>
+    <p>
+        The <strong>LittlePay Application</strong> is a payment message processing system designed to decode and parse messages exchanged between payment terminals and EMV cards. The application supports two modes of operation: a <strong>REST API</strong> and a <strong>TCP Server</strong>. It uses the <strong>BER-TLV</strong> format to parse messages, handles multi-byte tags and length fields. Key technologies include <strong>Java 17</strong>, <strong>Spring Boot</strong>, <strong> JUnit </strong>, and <strong>Socket Programming</strong>.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Issues and Fixes</h2>
+    <div class="improvements">
+        <h3>1. MultipleMessageParser.parse</h3>
+        <ul>
+            <li><strong>Issue</strong>: The method did not handle Base64-encoded messages.</li>
+            <li><strong>Fix</strong>: Added a <code>Decoder</code> to decode Base64 messages before parsing.</li>
+        </ul>
+
+        <h3>2. MultipleMessageParser.validateAndResolveMessage</h3>
+        <ul>
+            <li><strong>Issue</strong>: The <code>currentIndex</code> logic was incorrect, leading to parsing errors.</li>
+            <li><strong>Fix</strong>: Fixed the <code>currentIndex</code> logic to correctly handle message boundaries.</li>
+        </ul>
+
+        <h3>3. Unit Test</h3>
+        <ul>
+            <li><strong>Issue</strong>: The card number in the unit test was incorrect (<code>378282246310005</code> instead of <code>378282246310005f</code>).</li>
+            <li><strong>Fix</strong>: Updated the unit test to use the correct card number (<code>378282246310005f</code>).</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Improvements</h2>
+    <div class="improvements">
+        <h3>1. Maintainability</h3>
+        <ul>
+            <li>Apply <strong>Single Responsibility Principle (SRP)</strong>: Split classes like <code>LittlePayServer</code> and <code>MultipleMessageParser</code> into smaller, focused components.</li>
+            <li>Externalize hardcoded values (e.g., <code>START</code>, <code>END</code>) to configuration files.</li>
+            <li>Use dependency injection to decouple classes.</li>
+        </ul>
+
+        <h3>2. Scalability</h3>
+        <ul>
+            <li>Use a thread pool in <code>LittlePayServer</code> to handle multiple clients concurrently.</li>
+            <li>Add caching for frequently accessed data (e.g., <code>currencies</code> map).</li>
+        </ul>
+
+        <h3>3. Readability</h3>
+        <ul>
+            <li>Break down long methods (e.g., <code>resolveTag</code>) into smaller, reusable methods.</li>
+            <li>Add comments to explain complex logic or business rules.</li>
+        </ul>
+
+        <h3>4. Testability</h3>
+        <ul>
+            <li>Apply <strong>Dependency Inversion Principle (DIP)</strong>: Use dependency injection to depend on abstractions.</li>
+            <li>Write comprehensive unit tests, including edge cases and error scenarios.</li>
+        </ul>
+
+        <h3>5. Error Handling</h3>
+        <ul>
+            <li>Replace <code>e.printStackTrace()</code> with proper logging (e.g., SLF4J).</li>
+            <li>Add custom exceptions for better error categorization.</li>
+        </ul>
+
+        <h3>6. Performance</h3>
+        <ul>
+            <li>Optimize the <code>SingleMessageParser</code> to reduce redundant calculations.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="key-takeaways">
+    <h2>Key Takeaways</h2>
+    <ul>
+        <li>Suggested improvements align with <strong>SOLID principles</strong>:
+            <ul>
+                <li><strong>SRP</strong>: Split classes into smaller, focused components.</li>
+                <li><strong>OCP</strong>: Use strategy and factory patterns for extensibility.</li>
+                <li><strong>DIP</strong>: Use dependency injection to depend on abstractions.</li>
+            </ul>
+        </li>
+        <li>Additional improvements include externalizing configuration, adding caching, and writing comprehensive unit tests.</li>
+    </ul>
+</div>
+
+</body>
+</html>
