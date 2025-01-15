@@ -1,8 +1,6 @@
 package org.example.message.handler;
 
 import org.example.entity.MessageEntity;
-import org.example.message.decoder.Base64MessageDecoder;
-import org.example.interfaces.Decoder;
 import org.springframework.stereotype.Component;
 
 import java.security.InvalidParameterException;
@@ -18,23 +16,19 @@ public class MultipleMessageParser {
     private static final String END = "03";
 
     private final SingleMessageParser singleMessageParser;
-    private final Decoder messageDecoder;
 
-    public MultipleMessageParser(SingleMessageParser singleMessageParser, Base64MessageDecoder messageDecoder) {
+    public MultipleMessageParser(SingleMessageParser singleMessageParser) {
         this.singleMessageParser = singleMessageParser;
-        this.messageDecoder = messageDecoder;
     }
 
     public Map<String, List<MessageEntity>> parse(String messages) {
-        byte[] decodedBytes = messageDecoder.decode(messages);
-        String decodedMessages = new String(decodedBytes);
-        validateTotalLength(decodedMessages);
+        validateTotalLength(messages);
 
         int currentIndex = 4;
         Map<String, List<MessageEntity>> messageEntityList = new HashMap<>();
 
-        while (currentIndex < decodedMessages.length()) {
-            String message = validateAndResolveMessage(currentIndex, decodedMessages);
+        while (currentIndex < messages.length()) {
+            String message = validateAndResolveMessage(currentIndex, messages);
 
             MessageEntity entity = singleMessageParser.parse(message);
             if (!messageEntityList.containsKey(entity.getKernel())) {
