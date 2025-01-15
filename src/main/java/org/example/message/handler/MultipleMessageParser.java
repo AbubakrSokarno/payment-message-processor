@@ -2,7 +2,7 @@ package org.example.message.handler;
 
 import org.example.entity.MessageEntity;
 import org.example.message.decoder.Base64MessageDecoder;
-import org.example.message.decoder.interfaces.Decoder;
+import org.example.interfaces.Decoder;
 import org.springframework.stereotype.Component;
 
 import java.security.InvalidParameterException;

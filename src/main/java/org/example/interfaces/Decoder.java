@@ -1,4 +1,4 @@
-package org.example.message.decoder.interfaces;
+package org.example.interfaces;
 
 public interface Decoder {
     byte[] decode(String s);

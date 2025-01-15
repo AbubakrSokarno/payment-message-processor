@@ -1,6 +1,6 @@
 package org.example.message.decoder;
 
-import org.example.message.decoder.interfaces.Decoder;
+import org.example.interfaces.Decoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
