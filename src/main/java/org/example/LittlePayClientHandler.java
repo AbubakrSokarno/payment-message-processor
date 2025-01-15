@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.message.handler.MultipleMessageParser;
+import org.example.service.MessageParserService;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -10,17 +10,17 @@ import java.net.Socket;
 
 @Component
 public class LittlePayClientHandler {
-    private final MultipleMessageParser multipleMessageParser;
+    private final MessageParserService messageParserService;
 
-    public LittlePayClientHandler(MultipleMessageParser multipleMessageParser) {
-        this.multipleMessageParser = multipleMessageParser;
+    public LittlePayClientHandler(MessageParserService messageParserService) {
+        this.messageParserService = messageParserService;
     }
 
     public void run(Socket clientSocket) throws IOException {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
-                multipleMessageParser.parse(inputLine.trim());
+                messageParserService.parseMessage(inputLine.trim());
             }
         }
     }
